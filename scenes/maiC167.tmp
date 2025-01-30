@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://doilesk6attfo"]
+
+[ext_resource type="Script" path="res://scripts/generate_map.gd" id="1_uxtcj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vr80n"]
+sky_top_color = Color(0.088621, 0.328482, 0.556486, 1)
+sky_horizon_color = Color(0.424833, 0.499713, 0.572123, 1)
+sky_curve = 0.15529
+ground_bottom_color = Color(0.156863, 0.458824, 0.752941, 1)
+ground_horizon_color = Color(0.538765, 0.614462, 0.687955, 1)
+ground_curve = 0.367583
+sun_angle_max = 90.0
+sun_curve = 0.0803831
+
+[sub_resource type="Sky" id="Sky_ws5nh"]
+sky_material = SubResource("ProceduralSkyMaterial_vr80n")
+radiance_size = 2
+
+[sub_resource type="Environment" id="Environment_l04go"]
+background_mode = 2
+sky = SubResource("Sky_ws5nh")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l04go")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+top_level = true
+light_color = Color(0.866222, 0.87034, 0.579712, 1)
+light_volumetric_fog_energy = 2.181
+light_angular_distance = 19.33
+shadow_enabled = true
+shadow_bias = 0.57
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+
+[node name="Map" type="Node3D" parent="."]
+script = ExtResource("1_uxtcj")
